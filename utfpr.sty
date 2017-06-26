@@ -1,0 +1,386 @@
+\ProvidesPackage{utfpr}
+\usepackage[a4paper, top=1.7in,bottom=1in,right=1in,left=1in,headheight=65pt]{geometry}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{ifthen}
+\usepackage{multirow}
+%\usepackage{pgffor}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% yellow from UTFPR logo
+\definecolor{myyellow}{RGB}{254, 203, 41}
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Retrieve the name of deptocoord department and the acronym.
+\newcommand{\deptocoord}[3]{
+	\newcommand{\deptocoordMMM}{#1}
+	\newcommand{\deptocoordMM}{#2}
+		\newcommand{\deptocoordM}{#3}
+}
+
+\lhead{\includegraphics[width=.12\textwidth]{img/brasao-eps-converted-to}}
+\chead{
+    {\small Ministério da Educação}\\
+    {\small \bf Universidade Tecnológica Federal do Paraná} \\
+    {\small Câmpus Campo Mourão}\\
+    {\small  \deptocoordMMM}-{\small  \deptocoordMM} \\
+    {\small  \deptocoordM}
+}
+\rhead{\includegraphics[width=0.18\textwidth]{img/utfpr-eps-converted-to}}
+
+\lfoot{}
+\cfoot{
+    {\scriptsize Câmpus Campo Mourão Via Rosalina Maria do Santos, 1233 }\\
+    {\scriptsize CEP 87301-899 Caixa Postal: 271 Campo Mourão - PR - Brasil}\\
+    {\scriptsize Telefone Geral +55 (44) 3518-1400}}
+%\rfoot{Página \thepage / \pageref{LastPage}}
+
+% custom headrule
+\renewcommand\headrule{
+\begin{minipage}{1\textwidth}
+{\color{black}\hrule height .5mm width \hsize}
+{\color{myyellow}\hrule height .5mm width \hsize}
+\end{minipage}}%
+
+% custom footrule
+\renewcommand\footrule{\begin{minipage}{1\textwidth}
+\hrule width \hsize height .1mm   
+\end{minipage}\par}%
+
+% custom page number
+\usepackage{lastpage}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+% space between lines
+\linespread{1.6}
+
+% set serial, title and date.
+\newcommand{\type}[1]{\newcommand{\typeM}{#1}}
+\newcommand{\motivolinhaUm}[1]{\newcommand{\motivolinhaUmM}{#1}}
+\newcommand{\motivolinhaDois}[1]{\newcommand{\motivolinhaDoisM}{#1}}
+\newcommand{\motivolinhaTres}[1]{\newcommand{\motivolinhaTresM}{#1}}
+\newcommand{\motivolinhaQuatro}[1]{\newcommand{\motivolinhaQuatroM}{#1}}
+
+\newcommand{\cabecalho}[1]{
+	\noindent
+		\begin{table}[!h]
+			\centering
+			\vspace{-1.5cm}
+			\begin{tabular}{|p{0.977\textwidth}|}
+				\hline
+				\begin{center}
+					\large \textbf{#1}
+				\end{center}\\ \hline
+			\end{tabular}
+		\end{table}
+	\hfill
+}
+
+\newcommand{\solicitante}[3]{
+	\begin{center}
+		%\linespread{1.0}
+			\renewcommand{\arraystretch}{0.8}% 
+			\begin{table}[!h]
+				\vspace{-1.1cm}
+				\centering
+					\begin{tabular}{|p{0.4\textwidth}|p{0.27\textwidth}|p{0.25\textwidth}|}
+					\hline
+					\begin{minipage}{0.4\columnwidth}
+						\scriptsize \textbf{Nome do Professor Solicitante:}
+					\end{minipage} & 
+					\begin{minipage}{0.27\textwidth}
+						\scriptsize \textbf{Coordenação:}
+					\end{minipage} & 
+					\begin{minipage}{0.25\textwidth}
+						\scriptsize \textbf{Data da Solicitação:}
+					\end{minipage} \\
+					\multicolumn{1}{|c|}{
+						\begin{minipage}{0.4\textwidth}
+						\sffamily	#1
+						\end{minipage}
+					} & \multicolumn{1}{c|}{
+					\begin{minipage}{0.27\textwidth}
+						#2
+					\end{minipage}
+					} & \multicolumn{1}{c|}{
+					\begin{minipage}{0.25\textwidth}
+						#3
+					\end{minipage}
+					} \\
+					 \hline
+				\end{tabular}
+			\end{table}
+		
+			\begin{table}[!h]
+				\centering
+				\vspace{-0.66cm}
+				\renewcommand{\arraystretch}{0.8}%
+				\begin{tabular}{|p{0.25\textwidth}|p{0.70\textwidth}|}
+					\hline
+					\multirow{5}{*}{
+					\ifthenelse{\equal{\typeM}{Substituição}}
+					{
+						\centering
+						\begin{tabular}{cl}
+						\textbf{(x)} & \textbf{Substituição} \\ 
+						( ) & Reposição    \\ 
+						( ) & Antecipação  \\ 
+						\end{tabular}
+					}
+					{\ifthenelse{\equal{\typeM}{Reposição}}
+						{
+							\centering
+							\begin{tabular}{cl}
+								( ) & Substituição    \\
+								\textbf{(x)} & \textbf{Reposição} \\ 
+								( ) & Antecipação  \\ 
+							\end{tabular}
+						}
+						{\ifthenelse{\equal{\typeM}{Antecipação}}
+							{
+								\centering
+								\begin{tabular}{cl}
+									( ) & Substituição    \\
+									( ) & Reposição  \\ 
+									\textbf{(x)} & \textbf{Antecipação} \\
+								\end{tabular}
+							}
+						}
+					}
+				  }
+					& \scriptsize \textbf{Motivo:} \\
+					&    \motivolinhaUmM    \\ \cline{2-2} 
+					&    \motivolinhaDoisM   \\ \cline{2-2} 
+					&    \motivolinhaTresM   \\ \cline{2-2} 
+					&    \motivolinhaQuatroM   \\ \hline
+				\end{tabular}
+			\end{table}
+	\end{center}
+}
+
+\newcommand{\cabecalhomudanca}{
+	\begin{center}
+		% \renewcommand{\arraystretch}{0.8}% 
+		\begin{table}[!h]
+			\centering
+			\vspace{-1.7cm}
+			\begin{tabular}{|p{0.16\textwidth}
+					|p{0.14\textwidth}
+					|p{0.10\textwidth}
+					|p{0.17\textwidth}
+					|p{0.06\textwidth}
+					|p{0.21\textwidth}
+					|}
+				\hline
+				\begin{minipage}{0.16\textwidth}
+					\center \footnotesize \textbf{Datas das Aulas}
+				\end{minipage} & 
+				\begin{minipage}{0.14\textwidth}
+					\center \footnotesize \textbf{Data Proposta}
+				\end{minipage} & 
+				\begin{minipage}{0.10\textwidth}
+					\center \footnotesize \textbf{Horário}
+				\end{minipage} & 
+				\begin{minipage}{0.17\textwidth}
+					\center \footnotesize \textbf{Disciplina Turma}
+				\end{minipage} & 
+				\begin{minipage}{0.06\textwidth}
+					\center \footnotesize \textbf{Sala}
+				\end{minipage} & 
+				\begin{minipage}{0.21\textwidth}
+					\center \footnotesize \textbf{Professor Substituto}
+				\end{minipage} 
+				\\ \hline
+			\end{tabular}
+		\end{table}
+	\end{center}
+}
+
+\newcommand{\mudanca}[6]{
+	\begin{center}
+		% \renewcommand{\arraystretch}{0.8}% 
+			\begin{table}[!h]
+				\centering
+				\vspace{-1.1cm}
+				\begin{tabular}{|p{0.16\textwidth}
+												|p{0.14\textwidth}
+												|p{0.10\textwidth}
+												|p{0.17\textwidth}
+												|p{0.06\textwidth}
+												|p{0.21\textwidth}
+												|}
+					\hline
+					#1 & #2 & #3 & #4 & #5 & #6 \\ \hline
+				\end{tabular}
+				\vspace{-1.2cm}
+			\end{table}
+	\end{center}
+}
+
+\newcommand{\parecer}{
+	\begin{center}
+	\begin{table}[!h]
+		\centering
+		\vspace{-0.96cm}
+		\begin{tabular}{|p{0.977\textwidth}|}
+			\hline
+				\begin{minipage}{0.977\textwidth}
+					\footnotesize \textbf{PARECER DA COORDENAÇÃO:}
+				\end{minipage}
+			\\
+      \\ \hline
+      \\ \hline
+      \\ \hline
+      \\ \hline
+		\end{tabular}
+	\end{table}
+\end{center}
+
+}
+
+\newcommand{\deacordo}{
+	\begin{center}
+\begin{table}[!h]
+	\centering
+	\vspace{-1.7cm}
+	\begin{tabular}{|p{0.475\textwidth}|p{0.475\textwidth}|}
+		\hline
+		%\begin{tabular}[c]{@{}l@{}}Assinatura do Professor\\ Solicitante\end{tabular} & \begin{tabular}[c]{@{}l@{}}Ciente dos Professores\\ Substitutos\end{tabular} \\ \hline
+		\begin{minipage}{0.475\textwidth}
+			\footnotesize \textbf{Assinatura do Professor Solicitante:}
+		\end{minipage} &
+	  \begin{minipage}{0.475\textwidth}
+	  	\footnotesize \textbf{Ciente dos Professores Substitutos:}
+	  \end{minipage}
+    \\
+		&                                                                              \\ \hline
+		\begin{minipage}{0.475\textwidth}
+			\footnotesize \textbf{Aprovação da Coordenação:}
+		\end{minipage}                                                      &                                                                              \\
+		&                                                                               \\ \hline
+		\begin{minipage}{0.475\textwidth}
+			\footnotesize \textbf{Carimbo:}
+		\end{minipage}&                                                                              \\ 
+		&																																							 \\ \cline{2-2}
+		&																																							 \\ 
+		&																																							 \\ \hline
+	\end{tabular}
+\end{table}
+\end{center}
+}
+
+\newcommand{\observacoes}{
+	\begin{center}
+	\begin{table}[!h]
+		\centering
+		\vspace{-1.75cm}
+		\begin{tabular}{|p{0.475\textwidth}|p{0.475\textwidth}|}
+			\hline
+			\begin{minipage}{0.475\textwidth}
+				\scriptsize \textbf{Observações:}
+			\end{minipage} &
+			\begin{minipage}{0.475\textwidth}
+				\scriptsize \textbf{Atenção:}
+			\end{minipage}
+			\\
+			\begin{minipage}{0.475\textwidth}
+				\footnotesize {
+					---------------------------------------------------------------------------
+					---------------------------------------------------------------------------
+					---------------------------------------------------------------------------
+					---------------------------------------------------------------------------
+					---------------------------------------------------------------------------
+				}
+			\end{minipage}
+			& 
+			\begin{minipage}{0.475\textwidth}
+				\footnotesize {No caso de antecipação ou reposição de aulas, deverá constar no verso deste formulário a relação	dos	alunos com as respectivas assinaturas, concordando com a alteração do horário das aulas.
+				}
+			\end{minipage}
+		  \\ \hline
+		\end{tabular}
+	\end{table}
+	\end{center}
+}
+
+%\def\gerarlinhas#1{%
+%	\foreach \index in {1, ..., #1 {%
+%		& & \\ \line \par%
+%	}
+%}
+
+\newcommand{\listaalunos}{
+	\ifthenelse{\not\equal{\typeM}{Substituição}}
+	{
+		\newpage
+		\begin{table}[!h]
+			\centering
+			\begin{tabular}{|l|l|l|}
+				\hline
+				\multicolumn{3}{|c|}{\textbf{RELAÇÃO DE ALUNOS}}                                                                                                                                   \\ \hline
+				\multicolumn{3}{|c|}{
+					\begin{minipage}{0.97\textwidth}
+						\footnotesize {Os alunos abaixo nominados e assinados concordam com o horário proposto de reposição e/ou antecipação das aulas.}
+					\end{minipage}
+				}
+				\\ \hline
+				\multicolumn{1}{|c|}{	
+					\begin{minipage}{0.10\textwidth}
+						\centering \textbf{TURMA}
+					\end{minipage}
+				} & 
+				\multicolumn{1}{c|}{
+					\begin{minipage}{0.50\textwidth}
+						\centering \textbf{NOME DO ALUNO}
+					\end{minipage}
+				} & 
+				\multicolumn{1}{c|}{
+					\begin{minipage}{0.30\textwidth}
+						\centering \textbf{ASSINATURA}
+					\end{minipage}
+				}
+				\\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline
+				& & \\ \hline			
+			\end{tabular}
+		\end{table}
+	}
+}

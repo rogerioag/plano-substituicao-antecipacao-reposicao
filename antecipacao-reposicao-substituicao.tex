@@ -1,0 +1,59 @@
+\documentclass[a4paper, 10pt]{report}
+\usepackage{utfpr}
+
+\usepackage[T1]{fontenc}
+
+\usepackage[utf8]{inputenc}
+
+%\usepackage{lipsum}
+\usepackage{scalefnt}
+
+\begin{document}
+\clearpage
+
+\deptocoord{DACOM}{COCIC}{Curso de Bacharelado em Ciência da Computação}
+
+\cabecalho{SUBSTITUIÇÃO / REPOSIÇÃO / ANTECIPAÇÃO DE AULAS}
+
+% Escolha o tipo: Substituição, Reposição ou Antecipação.
+% \type{Substituição} % Não aparece a listagem de alunos.
+% \type{Reposição}
+\type{Antecipação}
+
+% Especifique um Motivo. Divida o texto em quatro linhas ou deixe em branco.
+\motivolinhaUm{Viagem a Congresso Nacional}
+\motivolinhaDois{Viagem a Congresso Nacional}
+\motivolinhaTres{Viagem a Congresso Nacional}
+\motivolinhaQuatro{Viagem a Congresso Nacional}
+
+% Indique o nome do professor solicitante.
+\solicitante{Testerson dos Santos}{COCIC}{\today}
+
+% Cabeçalho da mudança. Não precisa alterar.
+\cabecalhomudanca
+
+% Especifique os dados das mudanças de aulas.
+% Data da Aula | Data Proposta | Horário | Código Disciplina-Turma | Sala | Nome do Prof. Substituto.
+\mudanca{25/12/2017}{01/01/2018}{N1-N3}{PD36O-IC6A}{E-102}{Jamal Hem Fhazer}
+\mudanca{03/03/2018}{10/04/2018}{T1-T2}{IXI03-IC3E}{E-003}{Olairson Tokada Ioshi}
+\mudanca{25/12/2017}{01/01/2018}{N1-N3}{PD36O-IC6A}{E-102}{Testelvina da Silva}
+\mudanca{25/12/2017}{01/01/2018}{N1-N3}{PD36O-IC6A}{E-102}{Krzysztof de Souza}
+
+% Imprime o quadro de parecer.
+\parecer
+
+% De acordo dos substitutos.
+\deacordo
+
+% Quadro de observações.
+\observacoes
+
+% Lista dos Alunos. Se precisar mais de uma folha, só chamar o comando novamente.
+% A lista é impressa somente para Reposição e Antecipação. 
+\listaalunos
+
+\listaalunos
+
+\listaalunos
+
+\end{document}
